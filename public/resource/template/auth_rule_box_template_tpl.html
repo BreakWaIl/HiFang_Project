@@ -1,0 +1,14 @@
+<script id="auth_class_tpl" type="text/template">
+    <option selected="" value="0">顶级菜单</option>
+    [% if(it) { %]
+       [% for(var item in it){ %]
+
+          [% if(it[item]['pid']!=0){ %]
+           <option value="[%= it[item]['id'] %]">[%= it[item]["title_show"] %]</option>
+              [% }else{ %]
+           <option value="[%= it[item]['id'] %]">[%= it[item]["title_show"] %]</option>
+              [% } %]
+
+        [% } %]
+    [% } %]
+</script>

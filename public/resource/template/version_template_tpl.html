@@ -1,0 +1,17 @@
+<script id="version_list_tpl" type="text/template">
+    [% if( it ) { %]
+    [% for(var item in it){ %]
+    <tr >
+        <td>[%= it[item]['create_time'] %]</td>
+        <td>[%= it[item]["type"] %]</td>
+        <td>[%= it[item]["version_no"] %] </td>
+        <td>[%= it[item]["app_path"] || '---' %]</td>
+        <td>[%= it[item]["intro"] %]</td>
+    </tr>
+    [% } %]
+    [% }else{ %]
+    <tr>
+        <td colspan="7" style="text-align:center;"> 暂无数据</td>
+    </tr>
+    [% } %]
+</script>

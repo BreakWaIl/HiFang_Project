@@ -1,0 +1,228 @@
+/*中间内容开始*/
+.btn1{
+    display: inline-block;
+    padding: 4px 6px;
+    margin-bottom: 0;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 12px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.btn2{
+    width:12%!important;
+    float: left;
+    margin-left: 10px;
+}
+.btn4{
+    width:15%!important;
+    float: left;
+    margin-left: 10px;
+}
+.btn3{
+    margin-left: 10px;
+}
+.page-cla{
+    float: right;
+}
+.fore-span{
+    float: left;
+    line-height: 34px;
+}
+/*跟进的弹窗*/
+.table-responsive1 {
+    overflow-y: auto;
+    max-height: 140px;
+}
+/*用户列表*/
+.bread_btn{
+    color: #333333;
+    float: right;
+    list-style: none;
+    background: transparent;
+    margin-bottom: 0px;
+    margin-top: -7px;
+}
+/*添加用户弹窗*/
+.btn6 {
+    width: 49% !important;
+    float: left;
+}
+.btn5 {
+    width: 28% !important;
+    float: left;
+}
+.use-span{
+    float: left;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+.use-span1{
+    float: left;
+    margin-top: 6px;
+    margin-left: 10px;
+}
+/*轮播图*/
+.diagram-image{
+    width: 250px;
+    height: 60px;
+    margin: 0 auto;
+}
+body{
+    padding-right: 0!important;
+}
+.modal{
+    padding-right: 0!important;
+}
+.img_header{
+    width: 55px;height: 47px;margin: 0 auto;
+}
+/*设置案场权限人*/
+#modal_panf1{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    display: none;
+}
+.modal_con{
+    width: 600px;
+    height: 500px;
+    margin: 0 auto;
+    background: #ffffff;
+    margin-top: 100px;
+    position: relative;
+}
+.imagebox img {
+    width: 110px;
+    height: 80px;
+}
+.jia{
+    width: 17px;
+    height: 17px;
+    margin-left: 10px;
+    margin-top: 15px;
+}
+.jian{
+    width: 12px;
+    height:16px;
+    margin-left:-16px;
+    float: left;
+    margin-top: 15px;
+}
+.jian_class{
+    display: block;
+    margin: 0 auto;
+    height: auto;
+    overflow: hidden;
+    float: left;
+}
+.phone_list1{
+    width: 185px;
+    color: #3c3c3c;
+    height: auto;
+    background: #Fff;
+    border-top: 0px solid #d0d0d0;
+    border-left: 1px solid #d0d0d0;
+    border-right: 1px solid #d0d0d0;
+    border-bottom: 1px solid #d0d0d0;
+    margin: 0 0 0 0;
+    padding-left: 10px;
+    float: left;
+    margin-left: -187px;
+    margin-top: 36px;
+}
+.phone_list1 li{
+    width: 100%;
+    height: 30px;
+    font-size: 14px;
+    float: left;
+    line-height: 30px;
+    list-style: none;
+    background: #FFFFff;
+}
+.phone_list{
+    width: 167px;
+    color: #3c3c3c;
+    height: auto;
+    background: #Fff;
+    border: 1px solid #d0d0d0;
+    border-top: none;
+    margin: 0 0 0 0;
+    float: left;
+    padding-left: 10px;
+    margin-left: -167px;
+    margin-top: 26px;
+}
+.phone_list li{
+    width: 100%;
+    height: 30px;
+    font-size: 14px;
+    float: left;
+    line-height: 30px;
+    list-style: none;
+    background: #FFFFff;
+}
+.phone_jia{
+    width: 167px;
+    float: left;
+}
+.phone_add{
+    width: 188px;
+    margin-top: 10px;
+}
+.phone_name{
+    margin-left: 4px;
+}
+/*//上传独家合同*/
+.jai_dujia{
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-left: 10px;
+}
+.liudan_pic_btn{
+    float: left;
+    margin-left: 10px;
+}
+/*//全行样式*/
+.but7{
+    width: 100%!important;
+    float: left;
+}
+.fl{
+    float: right!important;
+}
+.margin-top-ld{
+    margin-top: 15px;
+}
+.mend_list {
+    list-style: none;
+    float: left;
+    width: 56%;
+    margin-left: -42px;
+}
+.mend_list li {
+    border-bottom: 1px solid #cccccc;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+}
+.btn7 {
+    width: 30% !important;
+    float: left;
+}

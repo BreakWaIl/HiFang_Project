@@ -1,0 +1,12 @@
+<script id="get_auth_list" type="text/template">
+    [% if(it) { %]
+    [% for(var item in it){ %]
+
+
+    <option value="[%= it[item]['id'] %]">[%= it[item]["title"] %]</option>
+
+
+
+    [% } %]
+    [% } %]
+</script>

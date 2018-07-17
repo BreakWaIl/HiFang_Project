@@ -1,0 +1,64 @@
+<script id="user_list_tpl" type="text/template">
+    [% if(it) { %]
+    [% for(var item in it){ %]
+    <tr>
+        <td>[%= it[item]['id'] %]</td>
+        <td>
+            [% if(it[item]["user_nick"] != null) { %]
+                [%= it[item]["user_nick"] %]
+            [% } %]
+        </td>
+        <td>[%= it[item]["user_phone"] %]</td>
+        <td>[%= it[item]["create_time"] %]</td>
+        <td>
+            [% if(it[item]["follow_time"] == null) { %]
+            --
+            [% }else{ %]
+            [%= it[item]["follow_time"] %]
+            [% } %]
+        </td>
+        <td>
+            [% if(it[item]["status"] == -1) { %]
+                未激活
+            [% }else if(it[item]["status"] == 0) { %]
+                已激活
+            [% }else{ %]
+                删除
+            [% } %]
+        </td>
+        <td>
+            [% if (it[item]['last_login_ip'] == null){ %]
+                否
+            [% }else{ %]
+                是
+            [% } %]
+        </td>
+        <td>
+            [% if (it[item]['user_name'] != null){ %]
+                [%= it[item]["user_name"] %]
+            [% } %]
+        </td>
+        <td>
+            [% if (it[item]['registration_time'] != null){ %]
+                [%= it[item]["registration_time"] %]
+            [% } %]
+        </td>
+        <td>
+            <a class="btn1 btn-success caozuo" href="#modal-record" data-toggle="modal" data-id='[%= it[item]["id"] %]'>
+                详细信息
+            </a>
+            <a class="btn1 btn-success genj_ure" href="#modal-add"  data-toggle="modal" data-id='[%= it[item]["id"] %]'>
+                跟进
+            </a>
+            <!--<a class="btn1 btn-danger " href="#modal-delete" data-toggle="modal" onclick="delete_user(this)" data-id='[%= it[item]["id"] %]'>-->
+                <!--删除-->
+            <!--</a>-->
+        </td>
+    </tr>
+    [% } %]
+    [% }else{ %]
+    <tr>
+        <td colspan="7" style="text-align:center;"> 暂无数据</td>
+    </tr>
+    [% } %]
+</script>

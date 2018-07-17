@@ -1,0 +1,129 @@
+{layout name="global/frame_tpl" /}
+<input type="hidden" class="page-load" id="version"/>
+
+<!--导航star-->
+
+<!-- Sidebar -->
+<!-- /#sidebar-wrapper -->
+
+<!-- Page Content -->
+<div id="page-content-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-0">
+                <div class="panel panel-default">
+                    <div class="panel-heading breadcrumb">
+                        <li><a href="#">app版本管理</a></li>
+                        <li class="active">新增版本</li>
+                    </div>
+
+                    <div class="panel-body">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" style="text-align: right">选择类型：</label>
+                                <div class="col-sm-9">
+                                    <div class="radio" style="display: inline-block">
+                                        <label>
+                                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="1"
+                                                   checked>android
+
+                                        </label>
+                                    </div>
+                                    <div class="radio" style="display: inline-block">
+                                        <label>
+                                            <input type="radio" name="optionsRadios" id="optionsRadios2"
+                                                   value="2">ios
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" style="text-align: right">当前版本号：</label>
+                                <div class="col-sm-9">
+                                    <label class=" control-label" id="now_version">---</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group show_select_page">
+                                <!--<label class="col-sm-3 control-label" style="text-align: right">上传包：</label>
+                                <div class="col-sm-9">
+                                    <input readonly="readonly" type="text" name="cover_image" class="form-control"
+                                           style="width: 150px !important;display: inline-block"
+                                           id="cover_image" class="require" placeholder="请选择包"/>
+                                    <button class="banner_img btn btn-default" type="button">选择包</button>
+                                </div>-->
+                                <label class="col-sm-3 control-label" style="text-align: right">下载地址：</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control btn6" name="cover_image" id="cover_image"
+                                           style="width: 220px;"
+                                           placeholder="下载地址">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" style="text-align: right">版本简述：</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control btn6" name="title" id="intro"
+                                           style="width: 220px;"
+                                           placeholder="请简述此次发布的内容">
+                                </div>
+                            </div>
+                            <div class="form-group show_select_page">
+                                <label class="col-sm-3 control-label" style="text-align: right">选择类型：</label>
+                                <div class="col-sm-9">
+                                    <div class="radio" style="display: inline-block">
+                                        <label>
+                                            <input type="radio" name="optionsRadios" value="0"
+                                                   checked>审核中
+
+                                        </label>
+                                    </div>
+                                    <div class="radio" style="display: inline-block">
+                                        <label>
+                                            <input type="radio" name="optionsRadios"
+                                                   value="1">审核通过
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" style="text-align: right">&nbsp;</label>
+                                <div class="col-sm-9" style="text-align: left;">
+                                    <button type="button" class="btn btn-primary" id="save">保存修改</button>
+                                </div>
+
+                            </div>
+                        </form>
+
+                        <h5><span style="">发布历史：</span></h5>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover table-condensed">
+                                <thead>
+                                <tr>
+                                    <th class="text-center" style="width:15%;">发布时间</th>
+                                    <th class="text-center" style="width:8%;">app类型</th>
+                                    <th class="text-center" style="width:8%;">版本号</th>
+                                    <th class="text-center" style="width:14%;">下载地址</th>
+                                    <th class="text-center" style="width:55%;">发布简述</th>
+                                </tr>
+                                </thead>
+                                <tbody id="sublet_list" class="text-center">
+                                <tr>
+                                    <td colspan="7" style="text-align:center;"> 加载中...</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+
+
+

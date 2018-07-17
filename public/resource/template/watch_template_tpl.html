@@ -1,0 +1,27 @@
+<script id="watch_list_tpl" type="text/template">
+    [% if(it) { %]
+    [% for(var item in it){ %]
+    <tr>
+        <td>[%= it[item]['house_title'] %]</td>
+        <td>[%= it[item]['appellation'] %]</td>
+        <td>[%= it[item]["phone"] %]</td>
+        <td>[%= it[item]["expect_time"] %]</td>
+        <td>[%= it[item]["other_require"] %]</td>
+        <td>[%= it[item]["create_time"] %]</td>
+        <td>
+            <a class="btn1 btn-success " href="#modal-process" data-toggle="modal" data-id="[%= it[item]['id'] %]" onclick="alertFollow(this)">跟进</a>
+            <a data-toggle="modal" data-id="[%= it[item]['id'] %]"
+            [% if (it[item]["applies_id"] == 0){ %]
+                href="#modal-watch" class="btn1 btn-danger add_applies">转为报备</a>
+            [% }else{ %]
+                class="btn1 btn-info">已转为报备</a>
+            [% } %]
+        </td>
+    </tr>
+    [% } %]
+    [% }else{ %]
+    <tr>
+        <td colspan="8" style="text-align:center;"> 暂无数据</td>
+    </tr>
+    [% } %]
+</script>

@@ -1,0 +1,127 @@
+[8192] ErrorException in Modules.php line 179
+The each() function is deprecated. This message will be suppressed on further calls
+                $file = "$file";
+
+                //赋值给数组
+                $arr_file[] = $file;
+
+            }
+        }
+        //输出结果
+        if (is_array($arr_file)) {
+            while (list($key, $value) = each($arr_file)) {
+                $files[] = $value;
+            }
+        }
+        //关闭目录
+        closedir($fp);
+        return $files;
+    }
+}
+Call Stack
+in Modules.php line 179
+at Error::appError(8192, 'The each() function ...', 'D:\code\EacooPHP\app...', 179, ['folder' => 'D:\code\EacooPHP\pub...', 'fp' => resource, 'file' => false, ...])
+at each(['.DS_Store', 'admin', 'cms', ...]) in Modules.php line 179
+at Modules::getInstallFiles('D:\code\EacooPHP\pub...') in Modules.php line 50
+at Modules::getAll() in Modules.php line 47
+at Modules->index('local')
+at ReflectionMethod->invokeArgs(object(Modules), ['local']) in App.php line 343
+at App::invokeMethod([object(Modules), 'index'], []) in App.php line 595
+at App::module(['admin', 'modules', 'index'], ['app_host' => '', 'app_debug' => true, 'app_trace' => '0', ...], true) in App.php line 456
+at App::exec(['type' => 'module', 'module' => ['admin', 'modules', 'index']], ['app_host' => '', 'app_debug' => true, 'app_trace' => true, ...]) in App.php line 139
+at App::run() in start.php line 19
+at require('D:\code\EacooPHP\thi...') in admin.php line 42
+Environment Variables
+GET Dataempty
+POST Dataempty
+Filesempty
+Cookies
+PHPSESSID p3lj745nj5vqk7riv4f0lv9vnl
+Session
+eacoophp_ { "user_login_auth": { "uid": 1, "username": "admin", "nickname": "\u521b\u59cb\u4eba", "email": "admin@admin.com", "mobile": "", "avatar": "http:\/\/img.eacoomall.com\/images\/static\/assets\/img\/default-avatar.png", "auth_group": { "1": "\u8d85\u7ea7\u7ba1\u7406\u5458" }, "reg_time": 1519966035, "last_login_time": 1519967935 }, "activation_auth_sign": "921c1e47d5a29933771cb0fb472775be5621772f" }
+Server/Request Data
+MIBDIRS D:/tools/xampp/php/extras/mibs
+MYSQL_HOME \xampp\mysql\bin
+OPENSSL_CONF D:/tools/xampp/apache/bin/openssl.cnf
+PHP_PEAR_SYSCONF_DIR \xampp\php
+PHPRC \xampp\php
+TMP \xampp\tmp
+HTTP_HOST eacoo.com
+HTTP_CONNECTION keep-alive
+HTTP_UPGRADE_INSECURE_REQUESTS 1
+HTTP_USER_AGENT Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3343.4 Safari/537.36
+HTTP_ACCEPT text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+HTTP_REFERER http://eacoo.com/admin.php/admin/modules/index.html
+HTTP_ACCEPT_ENCODING gzip, deflate
+HTTP_ACCEPT_LANGUAGE zh-CN,zh;q=0.9
+HTTP_COOKIE PHPSESSID=p3lj745nj5vqk7riv4f0lv9vnl
+PATH C:\Program Files\Docker\Docker\Resources\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files\TortoiseGit\bin;C:\Program Files\TortoiseSVN\bin;D:\tools\PuTTY\;C:\Users\Root\AppData\Local\Microsoft\WindowsApps;D:\tools\xampp\php;D:\tools\apache-maven-3.5.2\bin;D:\tools\composer;C:\Users\Root\AppData\Roaming\Composer\vendor\bin;D:\tools\xampp\mysql\bin;C:\Users\Root\AppData\Local\Programs\Fiddler;D:\tools\apache-maven-3.5.2\bin;C:\Program Files\Java\jdk-9.0.4\bin;
+SystemRoot C:\Windows
+COMSPEC C:\Windows\system32\cmd.exe
+PATHEXT .COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+WINDIR C:\Windows
+SERVER_SIGNATURE <address>Apache/2.4.29 (Win32) OpenSSL/1.1.0g PHP/7.2.1 Server at eacoo.com Port 80</address>
+SERVER_SOFTWARE Apache/2.4.29 (Win32) OpenSSL/1.1.0g PHP/7.2.1
+SERVER_NAME eacoo.com
+SERVER_ADDR 127.0.0.1
+SERVER_PORT 80
+REMOTE_ADDR 127.0.0.1
+DOCUMENT_ROOT D:/code/EacooPHP/public
+REQUEST_SCHEME http
+CONTEXT_PREFIX
+CONTEXT_DOCUMENT_ROOT D:/code/EacooPHP/public
+SERVER_ADMIN webmaster@eacoo.com
+SCRIPT_FILENAME D:/code/EacooPHP/public/admin.php
+REMOTE_PORT 56165
+GATEWAY_INTERFACE CGI/1.1
+SERVER_PROTOCOL HTTP/1.1
+REQUEST_METHOD GET
+QUERY_STRING
+REQUEST_URI /admin.php/admin/modules/index/from_type/local.html
+SCRIPT_NAME /admin.php
+PATH_INFO /admin/modules/index/from_type/local.html
+PATH_TRANSLATED redirect:\index.php\modules\index\from_type\local.html
+PHP_SELF /admin.php/admin/modules/index/from_type/local.html
+REQUEST_TIME_FLOAT 1519968319.282
+REQUEST_TIME 1519968319
+Environment Variablesempty
+ThinkPHP Constants
+APP_PATH D:\code\EacooPHP\public/../apps/
+PUBLIC_PATH D:\code\EacooPHP\public/
+THEME_PATH D:\code\EacooPHP\public/themes/
+MODULE_MARK admin
+BASE_PATH
+THINK_VERSION 5.0.15
+THINK_START_TIME 1519968319.2895
+THINK_START_MEM 407240
+EXT .php
+DS \
+THINK_PATH D:\code\EacooPHP\thinkphp\
+LIB_PATH D:\code\EacooPHP\thinkphp\library\
+CORE_PATH D:\code\EacooPHP\thinkphp\library\think\
+TRAIT_PATH D:\code\EacooPHP\thinkphp\library\traits\
+ROOT_PATH D:\code\EacooPHP\
+EXTEND_PATH D:\code\EacooPHP\extend\
+VENDOR_PATH D:\code\EacooPHP\vendor\
+RUNTIME_PATH D:\code\EacooPHP\runtime\
+LOG_PATH D:\code\EacooPHP\runtime\log\
+CACHE_PATH D:\code\EacooPHP\runtime\cache\
+TEMP_PATH D:\code\EacooPHP\runtime\temp\
+CONF_PATH D:\code\EacooPHP\public/../apps/
+CONF_EXT .php
+ENV_PREFIX PHP_
+IS_CLI false
+IS_WIN true
+PUBLIC_RELATIVE_PATH
+PLUGIN_PATH D:\code\EacooPHP\plugins/
+SERVER_SOFTWARE_TYPE no
+EACOOPHP_V 1.2.1
+MODULE_NAME admin
+IS_MOBILE false
+CONTROLLER_NAME Modules
+ACTION_NAME index
+IS_POST false
+IS_AJAX false
+IS_PJAX false
+IS_GET true
+ThinkPHP V5.0.15 { 十年磨一剑-为API开发设计的高性能框架 }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form name="myForm" enctype="multipart/form-data" method="POST" action="admin.php/api/Tool/test">
+    标题：    <input type="text" name="title"><br><br>
+    视频链接：<input type="text" name="video_link"><br><br>
+    房源类型（买卖1 合租0 整租2）：<input type="text" name="video_type"><br><br>
+    视频封面图：<input type="text" name="video_cover"><br><br>
+    几室(数字)：<input type="text" name="num_room"><br>
+    几厅(数字)：<input type="text" name="num_hall"><br>
+    几卫(数字)：<input type="text" name="num_toilet"><br>
+    面积（整数）：<input type="text" name="area"><br><br>
+    价格：<input type="text" name="price"><br><br>
+    用户id（填650-2000）：<input type="text" name="member_id"><br><br>
+    小区id：<input type="text" name="building_id"><br><br>
+    所在地区id：<input type="text" name="area_id"><br><br>
+    经度（精确到小数点后六位）：<input type="text" name="longitude"><br><br>
+    纬度（精确到小数点后六位）：<input type="text" name="latitude"><br><br>
+    个人备注（其他用户看不到）：<input type="text" name="remarks"><br>
+    <input type="submit" name="enter" value="确定添加房源信息">
+</form><br>
+</body>
+</html>

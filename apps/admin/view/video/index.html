@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>视频列表</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+
+    <link rel="stylesheet" href="../../../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../../../bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../../../../bower_components/Ionicons/css/ionicons.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="../../../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../../../dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="../../../../dist/css/skins/_all-skins.min.css">
+
+    <!--layer
+    <link rel="stylesheet" href="../../../../assets/libs/layer/skin/layer.css">
+-->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">视频列表</h3>
+                </div>
+                <form action="{:url('search')}" method="post">
+                    <div class="col-xs-1">
+                        <button type="button" class="btn btn-danger" onclick="deleteAll()">批量删除</button>
+                    </div>
+                    <div class="col-xs-2">
+                    <input type="text" class="form-control" placeholder="开始时间" value="<?php echo isset($start_time)?$start_time:''?>" id="start" name="start">
+                    </div>
+                    <div class="col-xs-2">
+                    <input type="text" class="form-control" placeholder="结束时间" value="<?php echo isset($stop_time)?$stop_time:''?>" id="stop" name="stop">
+                    </div>
+                    <div class="col-xs-2">
+                    <input type="text" class="form-control" placeholder="用户手机号" name="phone" value="<?php echo isset($phone)?$phone:''?>">
+                    </div>
+                    <div class="col-xs-2">
+                    <input type="text" class="form-control" placeholder="用户hiID" name="hiid" value="<?php echo isset($hiid)?$hiid:''?>">
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" class="form-control" placeholder="用户昵称" name="nickname" value="<?php echo isset($nickname)?$nickname:''?>">
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" class="form-control" placeholder="视频内容" name="title" value="<?php echo isset($title)?$title:''?>">
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="text" class="form-control" placeholder="小区名" name="name" value="<?php echo isset($building_name)?$building_name:''?>">
+                    </div>
+                    <div class="col-xs-2">
+                    <select name="status" class="form-control">
+                        <option value="-1">上下架选择</option>
+                        <option value="1" {if condition="isset($status) && $status eq 1"}selected{/if} >上架</option>
+                        <option value="0" {if condition="isset($status) && $status eq 0"}selected{/if} >下架</option>
+                    </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">筛选</button>
+                </form>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example2" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <td><input type="checkbox" value="0" name="check" onclick="inverserPick()"></td>
+                            <td width="40">视频id</td>
+                            <td>上传时间</td>
+                            <td width="210">视频内容</td>
+                            <td width="210">视频类型</td>
+                            <td width="210">小区名</td>
+                            <td width="140">上传人</td>
+                            <td width="140">上传人嗨房id</td>
+                            <td width="45">评论数</td>
+                            <td width="45">点赞数</td>
+                            <td>视频状态</td>
+                            <td>操作</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {volist name="info" id="vo"}
+                        <tr>
+                            <td><input type="checkbox" value="{$vo.id}" name="check"></td>
+                            <td>{$vo.id}</td>
+                            <td>{$vo.create_time|date="Y-m-d H:i:s",###}</td>
+                            <td>{$vo.title}</td>
+                            <td>
+                                {if condition="$vo.video_type eq 0"}合租
+                                {elseif condition="$vo.video_type eq 1" }买卖
+                                {elseif condition="$vo.video_type eq 2" }整租
+                                {/if}
+                            </td>
+                            <td>{$vo.name}</td>
+                            <td>{$vo.nickname}--{$vo.phone}</td>
+                            <td>{$vo.hiid}</td>
+                            <td>{$vo.num_comment}</td>
+                            <td>{$vo.num_favorite}</td>
+                            <td>
+                                {if condition="$vo.status eq 1"}上架
+                                {elseif condition="$vo.status eq 0" }下架
+                                {/if}
+                            </td>
+                            <td>
+                                <a href="{:url('detail',['id'=>$vo.id])}"><button type="button" class="btn btn-info btn-sm">播放</button></a>
+                                <a ><button type="button" class="btn btn-info btn-sm" onclick="showConfirm({$vo.id})">删除</button></a>
+                                {if condition="$vo.is_robot eq 0"}
+                                {if condition="$vo.examine eq 0"}
+                                <a href="{:url('account/create',['id'=>$vo.id])}">
+                                    <button type="button" class="btn btn-info btn-sm">发奖励</button>
+                                </a>
+                                {elseif condition="$vo.examine eq 1"}
+                                <a href="{:url('account/create',['id'=>$vo.id])}">
+                                    <button type="button" class="btn btn-primary btn-sm">已审核</button>
+                                </a>
+                                {/if}
+                                {elseif condition="$vo.is_robot eq 1" }
+                                {/if}
+                                <a href="{:url('imgDetail',['id'=>$vo.id])}"><button type="button" class="btn btn-info btn-sm">户型图</button></a>
+                                <a href="{:url('downVideo',['id'=>$vo.id])}"><button type="button" class="btn btn-info btn-sm">
+                                    {if condition="$vo.status eq 1"}下架
+                                    {elseif condition="$vo.status eq 0" }上架
+                                    {/if}</button></a>
+                            </td>
+                        </tr>
+                        {/volist}
+                        </tbody>
+                    </table>
+                </div>
+                <div class='col-md-2'></div>
+                <div class="text-center">{$info->render()}</div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+
+
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Create the tabs -->
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+        <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+        <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <!-- Home tab content -->
+        <div class="tab-pane" id="control-sidebar-home-tab">
+            <h3 class="control-sidebar-heading">Recent Activity</h3>
+            <ul class="control-sidebar-menu">
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+                            <p>Will be 23 on April 24th</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="menu-icon fa fa-user bg-yellow"></i>
+
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+
+                            <p>New phone +1(800)555-1234</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+
+                            <p>nora@example.com</p>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="menu-icon fa fa-file-code-o bg-green"></i>
+
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+
+                            <p>Execution time 5 seconds</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <!-- /.control-sidebar-menu -->
+
+            <h3 class="control-sidebar-heading">Tasks Progress</h3>
+            <ul class="control-sidebar-menu">
+                <li>
+                    <a href="javascript:void(0)">
+                        <h4 class="control-sidebar-subheading">
+                            Custom Template Design
+                            <span class="label label-danger pull-right">70%</span>
+                        </h4>
+
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <h4 class="control-sidebar-subheading">
+                            Update Resume
+                            <span class="label label-success pull-right">95%</span>
+                        </h4>
+
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-success" style="width: 95%"></div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <h4 class="control-sidebar-subheading">
+                            Laravel Integration
+                            <span class="label label-warning pull-right">50%</span>
+                        </h4>
+
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <h4 class="control-sidebar-subheading">
+                            Back End Framework
+                            <span class="label label-primary pull-right">68%</span>
+                        </h4>
+
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <!-- /.control-sidebar-menu -->
+
+        </div>
+        <!-- /.tab-pane -->
+        <!-- Stats tab content -->
+        <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+        <!-- /.tab-pane -->
+        <!-- Settings tab content -->
+        <div class="tab-pane" id="control-sidebar-settings-tab">
+            <form method="post">
+                <h3 class="control-sidebar-heading">General Settings</h3>
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Report panel usage
+                        <input type="checkbox" class="pull-right" checked>
+                    </label>
+
+                    <p>
+                        Some information about this general settings option
+                    </p>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Allow mail redirect
+                        <input type="checkbox" class="pull-right" checked>
+                    </label>
+
+                    <p>
+                        Other sets of options are available
+                    </p>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Expose author name in posts
+                        <input type="checkbox" class="pull-right" checked>
+                    </label>
+
+                    <p>
+                        Allow the user to show his name in blog posts
+                    </p>
+                </div>
+                <!-- /.form-group -->
+
+                <h3 class="control-sidebar-heading">Chat Settings</h3>
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Show me as online
+                        <input type="checkbox" class="pull-right" checked>
+                    </label>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Turn off notifications
+                        <input type="checkbox" class="pull-right">
+                    </label>
+                </div>
+                <!-- /.form-group -->
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Delete chat history
+                        <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+                    </label>
+                </div>
+                <!-- /.form-group -->
+            </form>
+        </div>
+        <!-- /.tab-pane -->
+    </div>
+</aside>
+<!-- /.control-sidebar -->
+<!-- Add the sidebar's background. This div must be placed
+     immediately after the control sidebar -->
+<div class="control-sidebar-bg"></div>
+
+<!-- jQuery 3 -->
+<script src="../../../../bower_components/jquery/dist/jquery.min.js"></script>
+<!--layer-->
+<script src="../../../../assets/libs/laydate/laydate.js"></script>
+<script src="../../../../assets/libs/layer/layer.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="../../../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- DataTables -->
+<script src="../../../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../../../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="../../../../bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="../../../../bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="../../../../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../../../../dist/js/demo.js"></script>
+<!-- page script -->
+<script>
+    /*$(function () {
+        $('#example1').DataTable()
+        $('#example2').DataTable({
+            'paging'      : true,
+            'lengthChange': true,
+            'searching'   : false,
+            'ordering'    : true,
+            'info'        : true,
+            'autoWidth'   : false
+        })
+    })*/
+</script>
+<script>
+    function inverserPick() {
+        $("[type=checkbox]:checkbox").each(function () {
+            this.checked = !this.checked;
+        });
+    }
+    function deleteAll() {
+        var number = '';
+        layer.confirm('确定要批量删除吗？', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            $("input:checkbox[name=check]:checked").each(function(k){
+                if(k == 0){
+                    number = $(this).val();
+                }else{
+                    number += ","+$(this).val();
+                }
+            });
+            if (!number){
+                layer.msg('请选择删除对象',{icon: 2});
+                return;
+            }
+            $.post("{:url('video/deleteAll')}",{'deletenum':number},function (data) {
+                if(data['status'] == 1){
+                    layer.msg('批量删除成功',{icon: 1});
+                    setTimeout(function(){window.location.reload();},1500);
+                }else{
+                    layer.msg('批量删除失败',{icon: 2});
+                }
+            },'json');
+        }, function(){
+        });
+    }
+</script>
+<script>
+    //执行一个laydate实例
+    //日期有效范围只限定在：2017年
+    laydate.render({
+        elem: '#start'
+        //,value: new Date()
+    });
+    laydate.render({
+        elem: '#stop'
+        //,value: new Date()
+    });
+
+    function showConfirm(id){
+        if(confirm('你确定要执行此操作吗？')){
+            location.href='{:url("delete")}?id='+id;
+        }
+    }
+
+</script>
+</body>
+</html>

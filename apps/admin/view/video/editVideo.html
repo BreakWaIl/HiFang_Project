@@ -1,0 +1,131 @@
+{extend name="$_admin_public_base_"/}
+{block name="style"}
+
+{/block}
+
+{block name="main"}
+<div style="text-align: center;position: relative">
+    <form class="form-inline">
+        <div style="position: absolute;top: 8%;left: 3%" class="form-group has-success has-feedback">
+            <label class="control-label" for="inputSuccess2">目前的区域：</label>
+            <input type="text"  style="width: 120px" class="form-control" value="{$info.address}" id="inputSuccess2" aria-describedby="inputSuccess4Status">
+            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <br>
+        <div style="position: absolute;top: 22%;left: 3%" class="form-group has-success has-feedback">
+            <label class="control-label" for="inputSuccess3">目前小区名：</label>
+            <input type="text" style="width: 200px" class="form-control" value="{$info.building}" id="inputSuccess3" aria-describedby="inputSuccess4Status">
+            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <br>
+        <div style="position: absolute;top: 36%;left: 3%" class="form-group has-success has-feedback">
+            <label class="control-label" for="inputSuccess4">当前的价格：</label>
+            <input type="text" style="width: 120px" class="form-control" value="{$info.price}" id="inputSuccess4" aria-describedby="inputSuccess4Status">
+            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        </div>
+    </form>
+    <button style="position: absolute;top: 50%;left: 5%" class="btn btn-info btn-sm" onclick="window.history.go(-1)">返回上传视频列表</button>
+    <video src="{$info.videolink}" height="300" autoplay controls></video>
+</div>
+<div class="form-group">
+    <label for="where">请搜索本视频规定的小区</label>
+    <input type="text" class="form-control" id="where" placeholder="请搜索本视频规定的小区">
+    <table class="table table-bordered" id="table">
+        <thead>
+        <th id='th'>
+        <td>小区名</td>
+        <td>所属地区</td>
+        <td>操作</td>
+        </th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+<br>
+<div class="row" id="qiniu" hidden>
+    <div class="col-md-4">
+        <button id="one" type="button" class="btn btn-primary" onclick='once("{$info.videolink}","{$info.videoname}")'>第一步：将视频上传到七牛云(等待成功)</button>
+    </div>
+    <div class="col-md-4">
+        <button id="two" data-id="" data-imgname="" type="button" class="btn btn-primary" onclick="two()">第二步：将封面图上传到七牛云(等待成功)</button>
+    </div>
+    <div class="col-md-4">
+        <button id="three" data-id="" data-videopath="" data-imgpath="" type="button" class="btn btn-primary" onclick="three({$info.id})">第三步：将视频纪录插入到库(等待成功)</button>
+    </div>
+</div>
+{/block}
+
+{block name="script"}
+<script type="text/javascript">
+    function checkinfo(building_id){
+        layer.msg('您已经选择指定地区,请进行下一步');
+        $("#three").attr("data-id",building_id);
+        $('.checkinfo').attr("disabled", true);
+        $('#qiniu').show(1000);
+    }
+    $(document).ready(function(){
+        document.onkeydown=function(event){
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            if(e && e.keyCode==13){ // enter 键
+                msg = $("#where").val();
+                $.post("{:url('video/searchBuilding')}",{'build_name':msg},function (res) {
+                    lengths = res['data'].length;
+                    for(var i=0;i<lengths;i++){
+                        $("#table tbody").prepend("<tr><td>"+i+"</td><td>"+res['data'][i]['building_name']+"</td><td>"+res['data'][i]['dic_value']+"</td><td><button class='btn btn-success btn-sm checkinfo' onclick='checkinfo("+res['data'][i]['building_id']+")'>使用此信息</button></td></tr>"); //在ul标签上动态添加li标签
+                        //$("#li"+i).attr("class",'list-group-item');     //为li标签添加class属性
+                    }
+                },'json');
+            }
+        };
+    });
+
+    function once(path,filename){
+        //alert(path);
+        layer.msg('正在上传七牛云，请稍等');
+        $('#one').attr("disabled", true);
+        $.post("{:url('video/upload')}",{'video_filePath':path,'filename':filename},function (res) {
+            if(res['code'] == 200){
+                $("#two").attr("data-id",res['img_path']);
+                $("#two").attr("data-imgname",res['img_name']);
+                $("#three").attr("data-videopath",res['video_path']);
+                layer.msg('上传成功，可进行下一步');
+            }else{
+                layer.msg('上传失败，请联系管理员');
+            }
+        },'json');
+    }
+
+    function two(){
+        var path = $('#two').data('id');
+        var img_name = $('#two').data('imgname');
+        layer.msg('正在上传七牛云，请稍等');
+        $('#two').attr("disabled", true);
+        $.post("{:url('video/uploadImg')}",{'img_filePath':path,'img_name':img_name},function (res) {
+            if(res['code'] == 200){
+                $("#three").attr("data-imgpath",res['img_path']);
+                layer.msg('上传成功，可进行下一步');
+            }else{
+                layer.msg('上传失败，请联系管理员');
+            }
+        },'json');
+    }
+
+    function three(video58_id){
+        //alert(path);
+        var building_id = $('#three').data('id');
+        var video_path =  $('#three').data('videopath');
+        var img_path =  $('#three').data('imgpath');
+        layer.msg('正在插入到库，请稍等');
+        $.post("{:url('video/insertVideo')}",{'building_id':building_id,'video_id':video58_id,'video_path':video_path,'img_path':img_path},function (res) {
+            if(res){
+                layer.msg('插入成功，可以退出');
+            }else{
+                layer.msg('插入失败，请联系管理员');
+            }
+        },'json');
+        $('#three').attr("disabled", true);
+    }
+</script>
+{/block}

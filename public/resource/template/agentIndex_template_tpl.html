@@ -1,0 +1,16 @@
+<script id="agentIndex_list_tpl" type="text/template">
+    [% if(it) { %]
+    [% for(var item in it){ %]
+    <tr class="text-center">
+        <td>[%= it[item]['agents_name'] %]</td>
+        <td>[%= it[item]['phone'] %]</td>
+        <td>[%= it[item]['time'] %]</td>
+        <td>[%= it[item]['price'] %] </td>
+    </tr>
+    [% } %]
+    [% }else{ %]
+    <tr>
+        <td colspan="8" style="text-align:center;"> 暂无数据</td>
+    </tr>
+    [% } %]
+</script> 

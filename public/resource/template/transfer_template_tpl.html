@@ -1,0 +1,30 @@
+<script id="transfer_list_tpl" type="text/template">
+    [% if(it) { %]
+    [% for(var item in it){ %]
+    <tr>
+        <td>[%= it[item]["shop_name"] %]</td>
+        <td>[%= it[item]["appellation"] %]</td>
+        <td>[%= it[item]["tel"] %]</td>
+        <td>[%= it[item]['manage_type'] %]</td>
+        <td>[%= it[item]["province"] %]-[%= it[item]["city"] %]-[%= it[item]["district"] %]</td>
+        <td>[%= it[item]["address_detail"] %]</td>
+        <td>[%= it[item]["expected_rent"] %]</td>
+        <td>[%= it[item]["create_time"] %]</td>
+        <td>
+            <a class="btn1 btn-success " href="#modal-process" data-toggle="modal" data-id="[%= it[item]['id'] %]" onclick="alertFollow(this)">跟进</a>
+            <a href="#modal-details" data-toggle="modal" data-id="[%= it[item]['id'] %], [%= it[item]['status'] %]"
+            [% if (it[item]["status"] == 0){ %]
+            onclick="edit(this)"  class="btn1 btn-danger">转为上架商铺</a>
+            [% }else{ %]
+            class="btn1 btn-info">已转为上架商铺</a>
+            [% } %]
+
+        </td>
+    </tr>
+    [% } %]
+    [% }else{ %]
+    <tr>
+        <td colspan="8" style="text-align:center;"> 暂无数据</td>
+    </tr>
+    [% } %]
+</script>

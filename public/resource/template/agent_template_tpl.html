@@ -1,0 +1,46 @@
+<script id="agent_tpl" type="text/template">
+    [% if(it) { %]
+    [% for(var item in it){ %]
+    <tr>
+        <td>
+            <input type="checkbox" name="ids" value="[%= it[item]['id'] %]" >
+        </td>
+        <td>[%= it[item]["create_time"] %]</td>
+        <td>[%= it[item]["id"] %]</td>
+        <td>[%= it[item]["name"] %]</td>
+        <td>[%= it[item]["phone"] %]</td>
+        <td>[%= it[item]["groupname"] %]</td>
+        <!--<td><span class="fa fa-check text-success"></span></td>-->
+        <td>
+            <a class="btn1 btn-success edit" href="#modal-edit" data-toggle="modal" data-id='[%= it[item]["id"] %]'>编辑</a>
+
+            [% if(it[item]["status"] == 0) { %]
+            <a class="btn1 btn-info is_show" data-toggle="modal" data-id='[%= it[item]["id"] %]'>正常</a>
+            [% }else if(it[item]["status"] == 1) { %]
+            <a class="btn1 btn-info is_show" data-toggle="modal" data-id='[%= it[item]["id"] %]'>冻结</a>
+            [% }else{ %]
+            <a class="btn1 btn-default" data-toggle="modal" data-id='[%= it[item]["id"] %]'>离职</a>
+            [% } %]
+
+        </td>
+    </tr>
+    [% } %]
+    [% }else{ %]
+    <tr>
+        <td colspan="8" style="text-align:center;"> 暂无数据</td>
+    </tr>
+    [% } %]
+</script>
+<!--经纪人列表模板-->
+<script id="get_auth_list" type="text/template">
+    [% if(it) { %]
+    [% for(var item in it){ %]
+
+
+    <option value="[%= it[item]['id'] %]">[%= it[item]["title"] %]</option>
+
+
+
+    [% } %]
+    [% } %]
+</script>

@@ -1,0 +1,194 @@
+body {
+    width: 1335px !important;
+    min-width: 1335px !important;
+    margin: 0;
+    margin: 0 auto;
+    background-color: #F2F2F2;
+    list-style:none;
+    padding-right:0px!important;
+}
+html { overflow-y: scroll; }
+a:hover{
+    text-decoration:none;
+}
+.navbar{
+    background: #ff9419;
+    width: 100%;
+    height: 40px;
+}
+.container-fluid{
+    float: left;
+}
+.hidden-phone{
+    color: #FFFFFF;
+    text-shadow: none;
+    line-height: 46px;
+    font-size: 21px;
+    float: left;
+    margin-left: 8px;
+}
+.hidden-phone:hover{
+    text-decoration:none;
+}
+.houtai_footer_icon1{
+    width: 27px;
+    height: 27px;
+    float: left;
+    margin-top: 10px;
+}
+.dropdown{
+    float: right;
+    margin-top: 8px;
+    margin-right: 2px;
+}
+.dropdown-menu{
+    min-width:72px;
+}
+/*-------------------------------*/
+/*           VARIABLES           */
+/*-------------------------------*/
+/*body {
+    position: relative;
+    overflow-x: hidden;
+}*/
+.nav .open > a {
+    background-color: transparent;
+}
+.nav .open > a:hover {
+    background-color: transparent;
+}
+.nav .open > a:focus {
+    background-color: transparent;
+}
+/*-------------------------------*/
+/*           Wrappers            */
+/*-------------------------------*/
+#wrapper {
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    padding-left: 0;
+    height: 770px;
+    transition: all 0.5s ease;
+}
+#wrapper.toggled {
+}
+#wrapper.toggled #sidebar-wrapper {
+    width: 0px;
+}
+#sidebar-wrapper {
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    background: #1a1a1a;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    transition: all 0.5s ease;
+    width: 220px;
+    z-index: 1000;
+    float: left;
+}
+
+#sidebar-wrapper::-webkit-scrollbar {
+    display: block;
+}
+#page-content-wrapper {
+    width: 100%;
+}
+.navbar{
+    border: none;
+}
+.container{
+    width: 100%;
+}
+/*-------------------------------*/
+/*     Sidebar nav styles        */
+/*-------------------------------*/
+.sidebar-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    top: 10px;
+    width: 220px;
+}
+.sidebar-nav li {
+    display: inline-block;
+    line-height: 20px;
+    position: relative;
+    width: 100%;
+}
+.sidebar-nav li:before {
+    background-color: #ff9419;
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    -webkit-transition: width 0.2s ease-in;
+    transition: width 0.2s ease-in;
+    width: 0px;
+    z-index: -1;
+}
+.sidebar-nav .dropdown-menu li:before {
+    background:rgba(255,148,25,0.1) !important;
+}
+
+.sidebar-nav li:hover:before {
+    -webkit-transition: width 0.2s ease-in;
+    transition: width 0.2s ease-in;
+    width: 100%;
+}
+.sidebar-nav li a {
+    color: #dddddd;
+    display: block;
+    padding: 13px 15px 13px 30px;
+    text-decoration: none;
+}
+.sidebar-nav li.open:hover before {
+    -webkit-transition: width 0.2s ease-in;
+    transition: width 0.2s ease-in;
+    width: 100%;
+}
+.sidebar-nav .dropdown-menu {
+     background-color: #222222;
+     border-radius: 0;
+     border: none;
+     box-shadow: none;
+     margin: 0;
+     padding: 0;
+     position: relative;
+     width: 100%;
+ }
+.sidebar-nav li a:hover,
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus,
+.sidebar-nav li.open a:hover,
+.sidebar-nav li.open a:active,
+.sidebar-nav li.open a:focus {
+    background-color: transparent;
+    color: #ffffff;
+    text-decoration: none;
+}
+.sidebar-nav > .sidebar-brand {
+    font-size: 20px;
+    height: 65px;
+    line-height: 44px;
+}
+.glyphicon-hand-down{
+    float: right;
+}
+.span-list{
+    margin-left: 6px;
+}
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus, .dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus {
+    background:rgba(255,148,25,0.1) !important;
+}
+.successModel{
+    display: none;
+}
+/*liudan.caa*/
+.ld-Marheight{
+    margin-top: 7px;
+    margin-left: 7px;
+}

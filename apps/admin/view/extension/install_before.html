@@ -1,0 +1,19 @@
+{extend name="$_admin_public_layerbase_"/}
+{block name="style"}
+
+{/block}
+{block name="main"}
+<div class="col-md-11" style="padding: 20px;border-radius:3px;">      
+    <form action="{$post_url}" method="post" class="app-form form-horizontal">
+        <fieldset>
+          <input type="hidden" id="action_url" name="action_url" value="{$post_url}">
+        {volist name="fieldList" id="field" key="k"}
+          {:action('common/BuilderForm/fieldType',['field'=>$field],'builder')}
+        {/volist}
+        </fieldset>
+    </form>
+</div> 
+{/block}
+
+{block name="script"}
+{/block}

@@ -1,0 +1,48 @@
+<script id="auth_rule_index_tpl" type="text/template">
+    [% if(it) { %]
+    [% for(var item in it){ %]
+    <tr>
+        <td><div class="icheckbox_minimal-blue" style="" aria-checked="false" aria-disabled="false">
+            <!--<input type="checkbox" name="ids[]" value="1" class="ids" style="">-->
+        </div>
+        </td>
+        <td>[%= it[item]["id"] %]</td>
+        <td>[%= it[item]["title"] %]</td>
+        <td>[%= it[item]["title2"] %]</td>
+        <td>[%= it[item]["name"] %]</td>
+        <td>[%= it[item]["sort"] %]</td>
+        <td>[%= it[item]["is_menu"] %]</td>
+        <!--<td><span class="fa fa-check text-success"></span></td>-->
+        <td>
+            <a class="btn1 btn-success edit" href="#modal-edit" data-toggle="modal" data-id='[%= it[item]["id"] %]'>编辑</a>
+            [% if(it[item]["status"] == 0) { %]
+            <a class="btn1 btn-info is_show" data-toggle="modal" data-id='[%= it[item]["id"] %]'>正常</a>
+            [% }else if(it[item]["status"] == 1) { %]
+            <a class="btn1 btn-info is_show" data-toggle="modal" data-id='[%= it[item]["id"] %]'>冻结</a>
+            [% }else{ %]
+            <a class="btn1 btn-default" data-toggle="modal" data-id='[%= it[item]["id"] %]'>离职</a>
+            [% } %]
+        </td>
+    </tr>
+    [% } %]
+    [% }else{ %]
+    <tr>
+        <td colspan="8" style="text-align:center;"> 暂无数据</td>
+    </tr>
+    [% } %]
+</script>
+<!--权限管理模板-->
+<script id="auth_class_tpl" type="text/template">
+    <option selected="" value="0">顶级菜单</option>
+    [% if(it) { %]
+    [% for(var item in it){ %]
+
+    [% if(it[item]['pid']!=0){ %]
+    <option value="[%= it[item]['id'] %]">[%= it[item]["title_show"] %]</option>
+    [% }else{ %]
+    <option value="[%= it[item]['id'] %]">[%= it[item]["title_show"] %]</option>
+    [% } %]
+
+    [% } %]
+    [% } %]
+</script>

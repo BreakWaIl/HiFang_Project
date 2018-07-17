@@ -1,0 +1,150 @@
+  {extend name="../apps/admin/view/public/base.html"/}
+  {block name="style"}
+  <link href="__LIBS__/daterangepicker/daterangepicker-bs3.css" type="text/css" rel="stylesheet">
+  {/block}
+
+  {block name="main"}
+    <div class="row">
+
+      <div class="col-md-10 mt-10">
+        <form action="" method="post">                
+          <div class="col-xs-5">         
+              <div class="input-group">
+                <div class="input-group-addon">
+                    选择时间  <i class="fa fa-calendar"></i>
+                </div>
+                <input type="text" class="form-control pull-right" name="timegap" value="{$timegap}" id="start_time">
+              </div>
+          </div>
+            <div class="col-xs-1"><button class="btn btn-info" type="submit">确定</button></div>
+          </form>
+          <a href="{:url('usertongji',['time'=>$timegap])}"><button type="button" class="btn btn-primary">单个用户邀请好友统计</button></a>
+        </div>
+
+        <div class="col-md-12 mt-20">
+          <div class="col-sm-3 col-xs-6">
+            今日邀请用户：{$user.today}人
+          </div>
+            <div class="col-sm-3 col-xs-6">
+            本月邀请用户：{$user.month}人
+          </div>
+            <div class="col-sm-3 col-xs-6">
+            邀请总数：{$user.total}人
+        </div>
+        <div class="col-md-12 mt-20">
+          <div class="col-sm-3 col-xs-6">
+            邀请1-3人：{$user.onetothree}人
+          </div>
+          <div class="col-sm-3 col-xs-6">
+            邀请4-6人：{$user.fourtosix}人
+          </div>
+          <div class="col-sm-3 col-xs-6">
+            邀请7-9人：{$user.seventonine}人
+          </div>
+          <div class="col-sm-3 col-xs-6">
+            邀请10人以上：{$user.tenplus}人
+          </div>
+        </div>
+  <hr>
+  <div class="chart mt-20">
+      <div id="statistics" style="height: 400px;"></div>
+  </div>
+  {/block}
+
+  {block name="script"}
+  <script src="__LIBS__/echarts/echarts.common.min.js" type="text/javascript"></script>
+<!--   <script src="__LIBS__/echarts/macarons.js"></script>
+  <script src="__LIBS__/echarts/china.js"></script> -->
+
+<script src="__LIBS__/daterangepicker/moment.min.js"></script>
+<script src="__LIBS__/daterangepicker/daterangepicker.js"></script>
+      <script type="text/javascript">
+
+        var myChart = echarts.init(document.getElementById('statistics'),'macarons');
+        var res = {$result};
+        option = {
+          title : {
+            text: '邀请好友统计'
+          },
+          toolbox: {
+            show : true,
+            feature : {
+              mark : {show: true},
+              dataView : {show: true, readOnly: false},
+              magicType : {show: true, type: ['line', 'bar']},
+              restore : {show: true},
+              saveAsImage : {show: true}
+            }
+          },
+          color: ['#3398DB'],
+          tooltip : {
+            trigger: 'axis',
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+              type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            }
+          },
+          grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+          },
+          xAxis : [
+            {
+              type : 'category',
+              data : ['邀请好友', '进入邀请页面', '注册'],
+              axisTick: {
+                alignWithLabel: true
+              }
+            }
+          ],
+          yAxis : [
+            {
+              type : 'value'
+            }
+          ],
+          series : [
+            {
+              name:'直接访问',
+              type:'bar',
+              barWidth: '55%',
+              data:res.data
+            }
+          ]
+        };
+        myChart.setOption(option);
+
+        $(document).ready(function() {
+          $('#start_time').daterangepicker({
+            format:"YYYY-MM-DD",
+            singleDatePicker: false,
+            showDropdowns: true,
+            minDate:'2016-01-01',
+            maxDate:'2030-01-01',
+            startDate:'2016-01-01',
+            showWeekNumbers: true,
+            timePicker: false,
+            timePickerIncrement: 1,
+            timePicker12Hour: true,
+            ranges: {
+              '今天': [moment(), moment()],
+              '昨天': [moment().subtract('days', 1), moment().subtract('days', 1)],
+              '最近7天': [moment().subtract('days', 6), moment()],
+              '最近30天': [moment().subtract('days', 29), moment()],
+              '上一个月': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+            },
+            opens: 'right',
+            locale : {
+              applyLabel : '确定',
+              cancelLabel : '取消',
+              fromLabel : '起始时间',
+              toLabel : '结束时间',
+              customRangeLabel : '自定义',
+              daysOfWeek : [ '日', '一', '二', '三', '四', '五', '六' ],
+              monthNames : [ '一月', '二月', '三月', '四月', '五月', '六月','七月', '八月', '九月', '十月', '十一月', '十二月' ],
+              firstDay : 1
+            }
+          });
+        });
+      </script>
+  {/block}

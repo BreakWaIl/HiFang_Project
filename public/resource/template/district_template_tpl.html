@@ -1,0 +1,20 @@
+<script id="district_list_tpl" type="text/template">
+    [% if(it) { %]
+    [% for(var item in it){ %]
+    <tr>
+        <td>[%= it[item]["create_time"] %]</td>
+        <td>[%= it[item]["id"] %]</td>
+        <td>[%= it[item]["district_name"] %]</td>
+        <td>[%= it[item]["name"] %]</td>
+        <td><a href="#modal-record" class="mend" data-toggle="modal" data-id='[%= it[item]["id"] %]'>[%= it[item]["store_num"] %]</a></td>
+        <td>
+            <a class="btn1 btn-success edit" href="#modal-edit" data-toggle="modal" data-id='[%= it[item]["id"] %]'>编辑</a>
+        </td>
+    </tr>
+    [% } %]
+    [% }else{ %]
+    <tr>
+        <td colspan="8" style="text-align:center;"> 暂无数据</td>
+    </tr>
+    [% } %]
+</script>

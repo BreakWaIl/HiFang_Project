@@ -1,0 +1,27 @@
+<script id="store_list_tpl" type="text/template">
+    [% if(it) { %]
+    [% for(var item in it){ %]
+    <tr class="text-center">
+        <td>
+            [% if(it[item]['district_name']) { %]
+                [%= it[item]['district_name'] %]
+            [% } %]
+        </td>
+        <td>[%= it[item]['create_time'] %]</td>
+        <td>[%= it[item]['id'] %]</td>
+        <td>[%= it[item]['store_name'] %]</td>
+        <td>[%= it[item]['agents_name'] %]</td>
+        <td><a href="#modal-record" data-toggle="modal" data-id='[%= it[item]["id"] %]' class="mend">[%= it[item]['agents_total'] %]</a></td>
+        <td>
+            <a class="btn1 btn-success edit" href="#modal-edit" data-toggle="modal" data-id='[%= it[item]["id"] %]'>编辑</a>
+            <!--<a class="btn1 btn-info" data-toggle="modal" data-id='[%= it[item]["id"] %]'>拜访记录</a>-->
+
+        </td>
+    </tr>
+    [% } %]
+    [% }else{ %]
+    <tr>
+        <td colspan="8" style="text-align:center;"> 暂无数据</td>
+    </tr>
+    [% } %]
+</script> 

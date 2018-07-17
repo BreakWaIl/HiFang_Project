@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+</head>
+<body>
+<script src='//yftest.fujuhaofang.com/assets/libs/layui/layui.js'></script>
+<script src="//yftest.fujuhaofang.com/laychat.js"></script>
+<script>
+    // 注册用户得到appkey
+    laychat.app_key = 'b054014693241bcd9c20';
+    // 自己的信息
+    laychat.mine = {
+        "username": "李四" //我的昵称
+        ,"id": "99"                //我的ID
+        ,"status": "online"         //在线状态 online：在线、hide：隐身
+        ,"sign": "在深邃的编码世界" //我的签名
+        ,"avatar": "http://api.laychat.net/assets/upload/0.jpg" //我的头像
+    };
+    // 好友列表信息
+    laychat.friendList =[{
+        "groupname": "前端" //好友分组名
+        ,"id": 1             //分组ID
+        ,"list": [{          //分组下的好友列表
+            "username": "张三"  //好友昵称
+            ,"id": "101"      //好友ID
+            ,"avatar": "http://api.laychat.net/assets/upload/1.jpg"
+            ,"sign": "这些都是测试数据，实际使用请严格按照该格式返回"
+            ,"status": "online" //若值为offline代表离线，online或者不填为在线
+        }]
+    }];
+    // 群组信息
+    laychat.groupList =[{
+        "groupname": "前端群" //群组名
+        ,"id": "11"          //群组ID
+        ,"avatar": "http://api.laychat.net/assets/upload/2.jpg" //群组头像
+    }];
+    laychat.isMobile = true;
+
+    // 打开聊天面板
+    laychat.open();
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <META HTTP-EQUIV="expires" CONTENT="0">
+    <title>Hi房在线聊天</title>
+    <!--<script src="//yftest.fujuhaofang.com/vconsole.min.js"></script>
+    <style type="text/css">
+    	#__vconsole .vc-switch{
+    		z-index: 9999999999999!important;
+    	}
+    	#__vconsole .vc-panel{
+    		z-index: 9999999999999!important;
+    	}
+    </style>
+	<script type="text/javascript">
+		var vConsole = new VConsole();
+	</script>-->
+
+    <style>
+        body .layim-title{display: none;}
+        body .layim-chat-main, body .layim-content, body .layui-layim{top: 0}
+
+    </style>
+</head>
+<body>
+<script src='/assets/libs/layui/layui.js'></script>
+<script src="/laychat1.js?new6"></script>
+<!--<script src="//yftest.fujuhaofang.com/vconsole.min.js"></script>-->
+<script>
+    // 注册用户得到appkey
+    /**
+     *修改
+     * @time 2018/5/5 10:00
+     * @auther zyt
+     */
+    laychat.app_key = 'b054014693241bcd9c20';
+    laychat.user_token ='{$authToken}';
+
+    // 自己的信息
+    laychat.mine = {
+        "username": "{$info.nickname}" //我的昵称
+        ,"id": "{$info.id}"                //我的ID
+        ,"status": "{$info.status}"         //在线状态 online：在线、hide：隐身
+        ,"sign": "{$info.sign}" //我的签名
+        ,"avatar": "{$info.headimgurl}" //我的头像
+    };
+    //创建一个会话
+    laychat.to={
+        id: '{$other.id}'
+        ,name: '{$other.nickname}'
+        ,type: 'friend' //friend、group等字符，如果是group，则创建的是群聊
+        ,avatar: '{$other.headimgurl}'
+    };
+    laychat.isMobile = true;
+    // 打开聊天面板
+    laychat.open();
+
+</script>
+
+
+
+
+</body>
+</html>

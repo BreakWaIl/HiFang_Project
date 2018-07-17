@@ -1,0 +1,1 @@
+<script type=text/javascript src=./vconsole.min.js></script><script type=text/javascript>if(~location.origin.indexOf('https://hifang.fujuhaofang.com')){console.log('正式服')}else{var vConsole=new VConsole()};</script>

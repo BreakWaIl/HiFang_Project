@@ -1,0 +1,21 @@
+<script id="callPhone_list_tpl" type="text/template">
+    [% if(it) { %]
+    [% for(var item in it){ %]
+    <tr class="text-center">
+        <td>[%= it[item]['call_time'] %]</td>
+        <td>[%= it[item]['agents_name'] %]</td>
+        <td>[%= it[item]['user_nick'] %]</td>
+        <td>[%= it[item]['time'] %]</td>
+        <td>[%= it[item]['price'] %] </td>
+        <td>[%= it[item]['follow_up'] %]</td>
+        <td>
+            <video id="media" src="[%= it[item]['voice_file'] %]" controls width="200px" height="38px" ></video>
+        </td>
+    </tr>
+    [% } %]
+    [% }else{ %]
+    <tr>
+        <td colspan="8" style="text-align:center;"> 暂无数据</td>
+    </tr>
+    [% } %]
+</script> 

@@ -1,0 +1,25 @@
+<script id="reportList_list_tpl" type="text/template">
+    [% if(it) { %]
+    [% for(var item in it){ %]
+    <tr class="text-center">
+        <td>[%= it[item]['create_time'] %]</td>
+        <td>[%= it[item]['internal_address'] %]</td>
+        <td>[%= it[item]['internal_title'] %]</td>
+        <td>[%= it[item]['user_name'] %]</td>
+        <td>[%= it[item]['user_phone'] %]</td>
+        <td>[%= it[item]['commission'] %]</td>
+        <td>[%= it[item]['practical_fee'] %]</td>
+        <td>
+            <a class="btn1 btn-success " href="/admin.php/index/houseEdit?id=[%= it[item]['id']%]" data-toggle="modal" >编辑</a>
+            <a class="btn1 btn-success is_show" data-toggle="modal" data-id='[%= it[item]["id"] %]'>通过</a>
+            <a class="btn1 btn-success dujia" href="#modal-dujia" data-toggle="modal" data-id='[%= it[item]["id"] %]' >跟进</a>
+            <a class="btn1 btn-success caozuo" href="#modal-record" data-toggle="modal" data-id='[%= it[item]["id"] %]'>时间轴</a>
+        </td>
+    </tr>
+    [% } %]
+    [% }else{ %]
+    <tr>
+        <td colspan="8" style="text-align:center;"> 暂无数据</td>
+    </tr>
+    [% } %]
+</script> 

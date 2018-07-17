@@ -1,0 +1,77 @@
+<script id="house_list_tpl" type="text/template">
+    [% if(it) { %]
+    [% for(var item in it){ %]
+    <tr class="text-center">
+        <td>[%= it[item]['id'] %]</td>
+        <td>
+            [% if(it[item]["shop_type"] == 0) { %]
+            商场
+            [% }else{ %]
+            街铺
+            [% } %]
+        </td>
+        <td>[%= it[item]['internal_title'] %]</td>
+        <td>
+            [% if(it[item]["rent_price"] == 0) { %]
+            30000以上
+            [% }else if(it[item]["rent_price"] == 1) { %]
+            10000-30000
+            [% }else{ %]
+            10000以下
+            [% } %]
+        </td>
+        <td>
+            [% if(it[item]["is_show"] == 0) { %]
+            是
+            [% }else{ %]
+            否
+            [% } %]
+        </td>
+        <td>[%= it[item]['create_time'] %]</td>
+        <td>
+            [% if(it[item]["leased"] == 0) { %]
+            已租
+            [% }else{ %]
+            待租
+            [% } %]
+        </td>
+        <td>
+            [% if(check_auth('index/addHousesAgentsDish')) { %]
+                [% if(it[item]["dish_name"] == "") { %]
+                    <a data-toggle="modal" data-id='[%= it[item]["id"] %]' href="#modal-anch" class="btn1 btn-danger add_applies">修改</a>
+                [% }else{ %]
+                    [%= it[item]['dish_name'] %]
+                    <a data-toggle="modal" data-id='[%= it[item]["id"] %]' href="#modal-anch" class="btn1 btn-danger add_applies">修改</a>
+                [% } %]
+            [% } %]
+        </td>
+        <td>
+            [% if(check_auth('index/houseEdit')) { %]
+                <a class="btn1 btn-success " href="/admin.php/index/houseEdit?id=[%= it[item]['id']%]" data-toggle="modal" >编辑</a>
+            [% } %]
+
+            [% if(check_auth('index/houseEdit')) { %]
+                <a class="btn1 btn-success is_show" data-toggle="modal" data-id='[%= it[item]["id"] %]'>推荐至首页</a>
+            [% } %]
+
+            [% if(check_auth('index/addHousesAgents')) { %]
+                <a class="btn1 btn-success anch" data-target="#modal-anch" data-toggle="modal" data-id='[%= it[item]["id"] %]'>设置案场权限人</a>
+            [% } %]
+
+            [% if(check_auth('index/addHousesAgentsExclusive')) { %]
+                <a class="btn1 btn-success dujia" href="#modal-dujia" data-toggle="modal" data-id='[%= it[item]["id"] %]' >是否独家</a>
+            [% } %]
+
+            <a class="btn1 btn-success caozuo" href="#modal-record" data-toggle="modal" data-id='[%= it[item]["id"] %]'>操作记录</a>
+            [% if(check_auth('index/houseDel')) { %]
+                <a data-toggle="modal" data-id='[%= it[item]["id"] %]' href="#modal-delete" class="btn1 btn-danger add_applies del_modal">删除</a>
+            [% } %]
+        </td>
+    </tr>
+    [% } %]
+    [% }else{ %]
+    <tr>
+        <td colspan="8" style="text-align:center;"> 暂无数据</td>
+    </tr>
+    [% } %]
+</script> 

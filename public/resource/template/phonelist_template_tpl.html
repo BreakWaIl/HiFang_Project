@@ -1,0 +1,21 @@
+<script id="phonelist_list_tpl" type="text/template">
+    [% if(it) { %]
+    [% for(var item in it){ %]
+    <tr class="text-center">
+        <td>[%= it[item]['phone_x'] %]</td>
+        <td>[%= it[item]['phone_a'] %]</td>
+        <td>[%= it[item]['phone_b'] %]</td>
+        <td>[%= it[item]['create_time'] %] </td>
+        <td>
+            <a class="btn1 btn-success is_show" data-toggle="modal" data-id='[%= it[item]["id"] %]' data-target="#modal-dujia">绑定</a>
+
+        </td>
+
+    </tr>
+    [% } %]
+    [% }else{ %]
+    <tr>
+        <td colspan="8" style="text-align:center;"> 暂无数据</td>
+    </tr>
+    [% } %]
+</script> 

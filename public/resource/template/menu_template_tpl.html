@@ -1,0 +1,23 @@
+<script id="menu_tpl" type="text/template">
+    [% if(it) { %]
+    [% for(var item in it){ %]
+        <li class="dropdown">
+            [% if(it[item]["_child"] == undefined || it[item]["_child"].length == 0) { %]
+                <a href="[%= it[item]['name'] %]" ><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span> <span class="span-list">[%= it[item]["title"] %]</span></a>
+            [% } else { %]
+                <a href="" class="dropdown-toggle" data-toggle="dropdown"> <span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span><span class="span-list">[%= it[item]["title"] %]</span>
+                    <span class="glyphicon glyphicon-hand-down" aria-hidden="true"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    [% for(var item_menu in it[item]["_child"]){ %]
+                        <li><a href="[%= it[item]['_child'][item_menu]['name'] %]"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span> <span class="span-list">[%= it[item]["_child"][item_menu]['title'] %]</span></a></li>
+                    [% } %]
+                </ul>
+            [% }%]
+        </li>
+    [% } %]
+    [% }else{ %]
+    <tr>
+        <td colspan="8" style="text-align:center;"> 暂无数据</td>
+    </tr>
+    [% } %]
+</script>

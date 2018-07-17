@@ -1,0 +1,80 @@
+{extend name="$_admin_public_base_"/}
+{block name="style"}
+
+{/block}
+
+{block name="main"}
+<div style="text-align: center;position: relative">
+    <form class="form-inline">
+        <br>
+        <div style="position: absolute;top: 22%;left: 3%" class="form-group has-success has-feedback">
+            <label class="control-label" for="inputSuccess3">目前小区名：</label>
+            <input type="text" style="width: 200px" class="form-control" value="{$info.name}" id="inputSuccess3" aria-describedby="inputSuccess4Status">
+            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        </div>
+        <br>
+    </form>
+    <button style="position: absolute;top: 50%;left: 5%" class="btn btn-info btn-sm" onclick="window.history.go(-1)">返回上传视频列表</button>
+    <video src="{$info.video_link}" height="300" autoplay controls></video>
+</div>
+<div class="form-group">
+    <label for="where">请搜索本视频规定的小区</label>
+    <input type="text" class="form-control" id="where" placeholder="请搜索本视频规定的小区">
+    <table class="table table-bordered" id="table">
+        <thead>
+        <th id='th'>
+        <td>小区名</td>
+        <td>所属地区</td>
+        <td>所在位置</td>
+        <td>操作</td>
+        </th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+
+{/block}
+
+{block name="script"}
+<script type="text/javascript">
+    $(document).ready(function(){
+        document.onkeydown=function(event){
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            if(e && e.keyCode==13){ // enter 键
+                msg = $("#where").val();
+                $.post("{:url('video/searchBuilding')}",{'build_name':msg},function (res) {
+                    lengths = res['data'].length;
+                    for(var i=0;i<lengths;i++){
+                        $("#table tbody").prepend("<tr><td>"+i+"</td><td>"+res['data'][i]['building_name']+"</td><td>"+res['data'][i]['dic_value']+"</td><td>"+res['data'][i]['address']+"</td><td><button class='btn btn-success btn-sm checkinfo' id='url' value='{$url}' onclick='checkinfo("+{$info.id}+","+res['data'][i]['area_id']+","+res['data'][i]['building_id']+")'>更改为该小区</button></td></tr>"); //在ul标签上动态添加li标签
+                        //$("#li"+i).attr("class",'list-group-item');     //为li标签添加class属性
+                    }
+                },'json');
+            }
+        };
+    })
+
+    function checkinfo(id,area_id,building_id){
+        if(confirm('你确定要执行此操作吗？')){
+            var url = $("#url").val();
+            $.ajax({
+                type: "POST",
+                url: url + "updateBuildingName",
+                data: {
+                    video_id: id,
+                    area_id: area_id,
+                    building_id: building_id
+                },
+                dataType: "json",
+                success: function(data){
+                    if (data == 1) {
+                        location.href = url + 'index';
+                    }
+                }
+            })
+        }
+    }
+
+</script>
+{/block}

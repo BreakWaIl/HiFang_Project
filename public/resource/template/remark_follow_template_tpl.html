@@ -1,0 +1,20 @@
+<script id="remark_follow_tpl" type="text/template">
+    [% if(it) { %]
+    [% for(var item in it){ %]
+    <tr class="text-center">
+        <td>[%= it[item]['created'] %]</td>
+        <td>[%= it[item]['content'] %]</td>
+        <td>[%= it[item]['admin'] %]</td>
+        <td>[%= it[item]['customer'] %]</td>
+        <td>[%= it[item]['phpone'] %]</td>
+        <td>
+            <a class="btn1 btn-success caozuo" href="#modal-record" data-toggle="modal" data-id='[%= it[item]["id"] %]'>详细信息</a>
+        </td>
+    </tr>
+    [% } %]
+    [% }else{ %]
+    <tr>
+        <td colspan="8" style="text-align:center;"> 暂无数据</td>
+    </tr>
+    [% } %]
+</script> 
